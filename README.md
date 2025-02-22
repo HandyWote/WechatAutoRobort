@@ -35,7 +35,7 @@ pip install openai
    ```
 
 #### ☁️ OpenAI云端模式
-1. 注册OpenAI账号：https://platform.openai.com/  
+1. 注册OpenAI账号：https://platform.openai.com/ (其他AI模型同理) 
 2. 获取API密钥  
 3. 修改`OpenAI.py`中以下参数：  
    ```python
