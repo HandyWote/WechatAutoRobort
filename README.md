@@ -14,7 +14,7 @@
    - 从官网下载安装，**必须使用Windows版微信**  
 
 ### 第二步：获取代码文件
-1. 下载本项目的两个文件：`Ollama.py`和`OpenAI.py`  
+1. 下载本项目的三个文件：`Ollama.py`、`OpenAI.py`和`config.json`  
 2. 将文件保存到单独的文件夹（例如：`D:\WechatBot`）
 
 ### 第三步：安装依赖库
@@ -28,20 +28,24 @@ pip install openai
 #### 🖥️ Ollama本地模式（推荐）
 1. 下载安装Ollama：https://ollama.ai/  
 2. 启动服务：在命令行输入`ollama run llama2`（示例模型）  
-3. 修改`Ollama.py`中以下参数：  
-   ```python
-   modelName = 'llama2'  # 与本地运行的模型一致
-   yourRobortName = '我的机器人'  # 微信中@你的名字
+3. 修改`config.json`中以下参数：  
+   ```json
+   "ollama": {
+     "modelName": "llama2",  // 与本地运行的模型一致
+     "yourRobortName": "我的机器人"  // 微信中@你的名字
+   }
    ```
 
 #### ☁️ OpenAI云端模式
 1. 注册OpenAI账号：https://platform.openai.com/ (其他AI模型同理) 
 2. 获取API密钥  
-3. 修改`OpenAI.py`中以下参数：  
-   ```python
-   APIKey = 'sk-xxxxxxxxxxxxxxxx'  # 你的API密钥
-   modelName = 'gpt-3.5-turbo'     # 官方模型名
-   url = 'https://api.openai.com/v1'  # 官方接口
+3. 修改`config.json`中以下参数：  
+   ```json
+   "openai": {
+     "APIKey": "sk-xxxxxxxxxxxxxxxx",  // 你的API密钥
+     "modelName": "gpt-3.5-turbo",     // 官方模型名
+     "url": "https://api.openai.com/v1"  // 官方接口
+   }
    ```
 
 ### 第五步：启动机器人
@@ -102,5 +106,5 @@ graph LR
 遇到问题可尝试：  
 - 重启微信客户端  
 - 检查API密钥有效性  
-- 查看命令行提示的错误信息  
+- 查看命令行提示的错误信息
 

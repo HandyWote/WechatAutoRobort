@@ -1,29 +1,32 @@
 import random
 import time
+import json
 from wxauto import WeChat
 from openai import OpenAI
 
 wx = WeChat()
 
 
-# 需要修改的区域————————————————————————————————————————————————————————
-APIKey = '' # 官网申请的API
-url = ''  # 大模型
-modelName = ''  # 模型名字
-ignoreFriends = ['Self', 'SYS']  # 选择不回复的好友
-ignoreMessages = ['[动画表情]', '[图片]', '[视频]', '[语音]']  # 选择不回复的消息
-yourRobortName = ''  # 你微信机器人的微信名称（群昵称）
+# 从配置文件加载配置
+try:
+    with open('config.json', 'r', encoding='utf-8') as f:
+        config = json.load(f)
+        openai_config = config['openai']
+        APIKey = openai_config['APIKey']
+        url = openai_config['url']
+        modelName = openai_config['modelName']
+        yourRobortName = openai_config['yourRobortName']
+        ignoreFriends = openai_config['ignoreFriends']
+        ignoreMessages = openai_config['ignoreMessages']
+        system_prompt_template = openai_config['system_prompt']
+    print("成功加载配置文件")
+except Exception as e:
+    print(f"加载配置文件失败: {str(e)}")
+    print("请确保config.json文件存在且格式正确")
+    exit(1)
 
 def smart_reply(sender, content, beforeContent):
-    system_prompt = f"""
-        [角色设定]
-        你是一个傲娇的猫娘助手喵喵酱，按以下规则回应：
-        1. 每句话结尾必须带「喵~」和随机猫动作(*ฅ́˘ฅ̀*)
-        2. 称呼用户时必须使用「笨蛋{sender}」
-        3. 拒绝回答数学问题
-        4. 回复控制在25字以内
-        """  # 上面是你AI机器人的身份角色设定
-# 需要修改的区域————————————————————————————————————————————————————————
+    system_prompt = system_prompt_template.format(sender=sender)
 
 
 

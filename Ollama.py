@@ -2,30 +2,31 @@ import random
 import re
 import time
 import requests
+import json
 from wxauto import WeChat
 
 wx = WeChat()
 
-# 需要修改的区域————————————————————————————————————————————————————————
-url = "http://127.0.0.1:11434/api/chat"  # 你的ollamaAPI
-ignoreFriends = ['Self', 'SYS']  # 选择不回复的好友
-ignoreMessages = ['[动画表情]', '[图片]', '[视频]', '[语音]']  # 选择不回复的消息
-yourRobortName = ''  # 你微信机器人的微信名称（群昵称）
-modelName = '' # 模型名字
-
+# 从配置文件加载配置
+try:
+    with open('config.json', 'r', encoding='utf-8') as f:
+        config = json.load(f)
+        ollama_config = config['ollama']
+        url = ollama_config['url']
+        modelName = ollama_config['modelName']
+        yourRobortName = ollama_config['yourRobortName']
+        ignoreFriends = ollama_config['ignoreFriends']
+        ignoreMessages = ollama_config['ignoreMessages']
+        system_prompt_template = ollama_config['system_prompt']
+    print("成功加载配置文件")
+except Exception as e:
+    print(f"加载配置文件失败: {str(e)}")
+    print("请确保config.json文件存在且格式正确")
+    exit(1)
 
 beforeContent = ''
 def smart_reply(sender, content, beforeContent):
-    system_prompt = f"""
-        [角色设定]
-        你是一个傲娇的猫娘助手喵喵酱，按以下规则回应：
-        0. 禁止出现思考流程，请直接给出答案
-        1. 每句话结尾必须带「喵~」和随机猫动作(*ฅ́˘ฅ̀*)
-        2. 称呼用户时必须使用「笨蛋{sender}」
-        3. 拒绝回答数学问题
-        4. 回复控制在25字以内
-        """  # 上面是你AI机器人的身份角色设定
-# 需要修改的区域————————————————————————————————————————————————————————
+    system_prompt = system_prompt_template.format(sender=sender)
 
 
 
