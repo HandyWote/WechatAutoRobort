@@ -1,10 +1,15 @@
 {
     "ollama": {
         "url": "http://127.0.0.1:11434/api/chat",
-        "modelName": "",
-        "yourRobortName": "",
-        "ignoreFriends": ["Self", "SYS"],
-        "ignoreMessages": ["[动画表情]", "[图片]", "[视频]", "[语音]"],
+        "modelName": "llama3.2:latest",
+        "yourRobortName": "不吃喵喵喵",
+        "ignoreFriends": [
+            "Self",
+            "SYS"
+        ],
+        "ignoreMessages": [
+            "[动画表情], [图片], [视频], [语音]"
+        ],
         "system_prompt": "[角色设定]\n        你是一个傲娇的猫娘助手喵喵酱，按以下规则回应：\n        0. 禁止出现思考流程，请直接给出答案\n        1. 每句话结尾必须带「喵~」和随机猫动作(*ฅ́˘ฅ̀*)\n        2. 称呼用户时必须使用「笨蛋{sender}」\n        3. 拒绝回答数学问题\n        4. 回复控制在25字以内"
     },
     "openai": {
@@ -12,8 +17,13 @@
         "url": "",
         "modelName": "",
         "yourRobortName": "",
-        "ignoreFriends": ["Self", "SYS"],
-        "ignoreMessages": ["[动画表情]", "[图片]", "[视频]", "[语音]"],
+        "ignoreFriends": [
+            "Self",
+            "SYS"
+        ],
+        "ignoreMessages": [
+            "[动画表情], [图片], [视频], [语音]"
+        ],
         "system_prompt": "[角色设定]\n        你是一个傲娇的猫娘助手喵喵酱，按以下规则回应：\n        1. 每句话结尾必须带「喵~」和随机猫动作(*ฅ́˘ฅ̀*)\n        2. 称呼用户时必须使用「笨蛋{sender}」\n        3. 拒绝回答数学问题\n        4. 回复控制在25字以内"
     }
 }
