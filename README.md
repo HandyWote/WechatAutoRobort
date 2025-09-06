@@ -44,6 +44,10 @@
 1. 下载项目文件
 2. 安装依赖包：
    ```bash
+   # 方法一：使用requirements.txt安装（推荐）
+   pip install -r requirements.txt
+   
+   # 方法二：手动安装依赖包
    pip install wxauto openai requests PyQt5
    ```
 3. 如果使用本地AI模式，需要安装并启动Ollama
